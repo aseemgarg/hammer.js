@@ -154,6 +154,9 @@ In addition to this the Transform and Drag gestures return start and end events.
 ### Compatibility
 |                                   | Tap | Double Tap | Hold | Drag | Transform |
 |:----------------------------------|:----|:-----------|:-----|:-----|:----------|
+| **Windows 8**                                                                  |
+| Internet Explorer 10              | X   |            |      | X    | X         |
+|                                                                                |
 | **Windows**                                                                    |
 | Internet Explorer 8               | X   | X          | X    | X    |           |
 | Internet Explorer 9               | X   | X          | X    | X    |           |
