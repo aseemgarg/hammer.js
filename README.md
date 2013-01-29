@@ -154,8 +154,8 @@ In addition to this the Transform and Drag gestures return start and end events.
 ### Compatibility
 |                                   | Tap | Double Tap | Hold | Drag | Transform |
 |:----------------------------------|:----|:-----------|:-----|:-----|:----------|
-| **Windows 8**                                                                  |
-| Internet Explorer 10              | X   |            |      | X    | X         |
+| **Windows 8 Touchdisplay**                                                     |
+| Internet Explorer 10              | X   | X          |      | X    | X         |
 |                                                                                |
 | **Windows**                                                                    |
 | Internet Explorer 8               | X   | X          | X    | X    |           |
@@ -204,9 +204,17 @@ On a desktop browser the mouse can be used to simulate touch events with one fin
 On Android 2 (and 3?) doesn't support multi-touch events, so there's no transform callback on these Android versions.
 Firefox 1.1 (Nokia N900) and Windows Phone 7.5 doesnt support touch events, and mouse events are badly supported.
 
+Windows 8 has been tested with a Asus Ultrabook with a touch screen. No guarantee that Windows 8 on a MS-Surface will behave the same
+as the Ultrabook as there might be different OS-based touch-handling-routines.
+
 Not all gestures are supported on every device. This matrix shows the support we have tested. This is ofcourse far from extensive.
 If you've tested hammer.js on a different device, please let us know.
 
+## About Windows 8
+The Internet Explorer 10 running under Windows 8 uses proprietary JavaScript events (MSPointer & MSGesture) which on the one
+hand solve the problems to work with touch devices in JavaScript but on the other hand completely do this differently
+to all other touch devices (iOS & Android). This for the hammer.js had to be extended to catch exactly these events to handle them
+especially for IE 10.
 
 ## Further notes
 Created by [Jorik Tangelder](http://twitter.com/jorikdelaporik) and developed further by everyone at [Eight Media](http://www.eight.nl/) in Arnhem, the Netherlands.
