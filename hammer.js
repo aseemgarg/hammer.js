@@ -537,7 +537,6 @@ function Hammer(element, options, undefined) {
             })();
 
             if (is_double_tap) {
-                debug('DOUBLE TAP!', 300);
                 _gesture = 'double_tap';
                 _prev_tap_end_time = null;
                 triggerEvent("doubletap", {
@@ -545,8 +544,7 @@ function Hammer(element, options, undefined) {
                     position: _pos.start
                 });
                 cancelEvent(event);
-            }
-
+            }     
                 // single tap is single touch
             else {
                 var x_distance = (_pos.move) ? Math.abs(_pos.move[0].x - _pos.start[0].x) : 0;
@@ -692,14 +690,20 @@ function Hammer(element, options, undefined) {
                     try {
                         // initialize these values
                         _touch_start_time = new Date().getTime();
+                        
                         _pos.move = getXYfromEvent(event);
                         _pos.start = getXYfromEvent(event);
 
                         // fire the event
                         gestures.tap(event);
-
-                        handleMSEnd(event);
-
+                        
+                        // add end time for double tap support
+                        _prev_tap_end_time = new Date().getTime();
+                        
+                        // define prev_gesture
+                        _prev_gesture = _gesture;
+                        
+                        // Cancel bubbling as IE bubbles bottom-up
                         if (options.prevent_default) {
                             cancelEvent(event);
                         }
@@ -714,11 +718,9 @@ function Hammer(element, options, undefined) {
                 case 'MSPointerOut':
                     break;
                 default:
-                    debug(event.type, 300);
                     break;
             } // end switch
         } catch (ex) {
-            debug('HIER', 300);
             reportException(ex);
         }
         /*
@@ -1028,47 +1030,4 @@ function Hammer(element, options, undefined) {
             }
         }
     }
-}
-function debug(value, dev) {
-	// dev = 5;
-
-	if (dev != null && dev > 12) {
-		try {
-			if (console) {
-				console.log(value);
-			}
-		} catch (ex) {
-		}
-
-		if (window.navigator.msPointerEnabled) {
-			var $debug = $('#debugger');
-			if ($debug.length < 1) {
-				$debug = $('<textarea id="debugger" rows="18" cols="140" wrap="off" readonly="readonly" />');
-				$debug.css({
-					position: 'absolute',
-					top: '75px',
-					left: '730px'
-				});
-				$('body').append($debug);
-			}
-			$debug.html($debug.html() + '\n' + value);
-			$debug[0].scrollTop = $debug[0].scrollHeight;
-		}
-	}
-}
-/***
-Reports an exception by printing all properties & members like StackTrace etc.
-***/
-function reportException(ex, level) {
-	if (ex != null) {
-		if (level == null) {
-			level = 4000;
-		}
-
-		var debu = '';
-		for (var propertyName in ex) {
-			debu += '\t[' + propertyName + '] = ' + ex[propertyName] + '\n';
-		}
-		debug('Exception: ' + debu, level);
-	}
 }
