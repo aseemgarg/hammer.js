@@ -152,6 +152,10 @@ In addition to this the Transform and Drag gestures return start and end events.
 
 
 ### Compatibility
+
+Not all gestures are supported on every device. This matrix shows the support we have tested. This is ofcourse far from extensive.
+If you've tested hammer.js on a different device, please let us know.
+
 |                                   | Tap | Double Tap | Hold | Drag | Transform |
 |:----------------------------------|:----|:-----------|:-----|:-----|:----------|
 | **Windows 8 Touchdisplay**                                                     |
@@ -206,9 +210,6 @@ Firefox 1.1 (Nokia N900) and Windows Phone 7.5 doesnt support touch events, and 
 
 Windows 8 has been tested with a Asus Ultrabook with a touch screen. No guarantee that Windows 8 on a MS-Surface will behave the same
 as the Ultrabook as there might be different OS-based touch-handling-routines.
-
-Not all gestures are supported on every device. This matrix shows the support we have tested. This is ofcourse far from extensive.
-If you've tested hammer.js on a different device, please let us know.
 
 ## About Windows 8
 The Internet Explorer 10 running under Windows 8 uses proprietary JavaScript events (MSPointer & MSGesture) which on the one
